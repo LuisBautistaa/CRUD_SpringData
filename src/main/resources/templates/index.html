@@ -1,0 +1,50 @@
+<!-- enviar info dinamica en el html -->
+<!<!-- hay que agregar la etiqueta de thymeleaf -->
+<!<!-- xmlns "ns" de name space -->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>INICIO</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Inicio Luis</h1>
+        <p th:text="${mensaje}"></p>
+        <p th:text="${saludo}"></p>
+
+        <!-- Se agrega los atributos que se pasaron en el domain Persona -->
+        <!-- se agrega condicion para que solo se muestre la tabla si no esta vacias -->
+        <div th:if ="${personas != null and !personas.empty}">
+            <table border="1">
+                <tr>
+                    <th><strong>Nombre</strong></th>
+                    <th><strong>Apellido</stron></th>
+                    <th><strong>Email</strong></th>
+                    <th><strong>Telefono</strong></th>
+                </tr>
+                <!-- para acceder a los elementos del array de personas
+                se le agrega each=clave:${valor}-->
+                <tr th:each="persona : ${personas}">
+                    <td th:text="${persona.nombre}"></td>
+                    <td th:text="${persona.apellido}"></td>
+                    <td th:text="${persona.email}"></td>
+                    <td th:text="${persona.telefono}"></td>
+                </tr>
+            </table>
+        </div>
+        <div th:if ="${personas == null or personas.empty}">
+            <table border="1">
+                <tr>
+                    <th><strong>Nombre</strong></th>
+                    <th><strong>Apellido</stron></th>
+                    <th><strong>Email</strong></th>
+                    <th><strong>Telefono</strong></th>
+                </tr>
+                <tr>
+                    <td>La lista de personas esta vacias</td>
+                </tr>
+            </table>
+
+        </div>
+    </body>
+</html>
