@@ -9,16 +9,13 @@
     </head>
     <body>
         <h1>Inicio Luis</h1>
-        <p th:text="${mensaje}"></p>
-        <p th:text="${saludo}"></p>
-
         <!-- Se agrega los atributos que se pasaron en el domain Persona -->
         <!-- se agrega condicion para que solo se muestre la tabla si no esta vacias -->
         <div th:if ="${personas != null and !personas.empty}">
             <table border="1">
                 <tr>
                     <th><strong>Nombre</strong></th>
-                    <th><strong>Apellido</stron></th>
+                    <th><strong>Apellido</strong></th>
                     <th><strong>Email</strong></th>
                     <th><strong>Telefono</strong></th>
                 </tr>
@@ -36,7 +33,7 @@
             <table border="1">
                 <tr>
                     <th><strong>Nombre</strong></th>
-                    <th><strong>Apellido</stron></th>
+                    <th><strong>Apellido</strong></th>
                     <th><strong>Email</strong></th>
                     <th><strong>Telefono</strong></th>
                 </tr>
