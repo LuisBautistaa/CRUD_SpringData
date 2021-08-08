@@ -8,8 +8,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <h1>Inicio Luis</h1>
+        <h1>CRUD PERSONAS</h1>
         <!-- Se agrega los atributos que se pasaron en el domain Persona -->
+        <!<!-- Se agrega link para redirigir a la pantalla agregar -->
+        <a th:href="@{/agregar}">Crear persona</a>
         <!-- se agrega condicion para que solo se muestre la tabla si no esta vacias -->
         <div th:if ="${personas != null and !personas.empty}">
             <table border="1">
@@ -18,6 +20,8 @@
                     <th><strong>Apellido</strong></th>
                     <th><strong>Email</strong></th>
                     <th><strong>Telefono</strong></th>
+                    <th><strong>Editar</strong></th>
+                    <th><strong>Eliminar</strong></th>
                 </tr>
                 <!-- para acceder a los elementos del array de personas
                 se le agrega each=clave:${valor}-->
@@ -26,6 +30,8 @@
                     <td th:text="${persona.apellido}"></td>
                     <td th:text="${persona.email}"></td>
                     <td th:text="${persona.telefono}"></td>
+                    <td><a th:href="@{/editar/} + ${persona.idPersona}" th:text="Editar"/></td>
+                    <td><a th:href="@{/eliminar(idPersona=${persona.idPersona})}" th:text="Eliminar"/></td>
                 </tr>
             </table>
         </div>

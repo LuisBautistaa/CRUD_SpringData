@@ -1,12 +1,14 @@
 package com.LuisBautista.web;
 
 import com.LuisBautista.dao.IPersonaDao;
+import com.LuisBautista.domain.Persona;
 import com.LuisBautista.service.PersonaService;
 import org.springframework.web.bind.annotation.GetMapping;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 /**
  *
  * @author Luis Bautista
@@ -30,6 +32,35 @@ public class ControladorInicio {
         log.info("Ejecutando el Controlador Spring MVC"); 
         model.addAttribute("personas", personas);
         return "index";
+    }
+    
+    @GetMapping("/agregar")
+    public String agregar(Persona persona){
+        //retorna la vista de modificar y en el parametro se inyecta una persona
+        return "modificar";
+    }
+    
+    //metodo de tipo post que recuperara la info del form de insert 
+    @PostMapping("/guardar")
+    public String guardar(Persona persona){
+        personaService.guardar(persona);
+        return "redirect:/";
+    }
+    
+    //metodo para modificar persona con el atributo del idPersona
+    //y con el parametro persona ya asocia el id con la persona inyectada
+    @GetMapping("/editar/{idPersona}")
+    public String editar(Persona persona, Model model){
+        persona = personaService.encontrarPersona(persona);
+        model.addAttribute("persona",persona);
+        return "modificar";
+    }
+    
+    //metodo que elimina un registro cuando se le da al link de la fila
+    @GetMapping("/eliminar")
+    public String eliminar(Persona persona){
+        personaService.eliminae(persona);
+        return "redirect:/";
     }
 
 }
