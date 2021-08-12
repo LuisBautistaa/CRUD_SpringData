@@ -1,0 +1,20 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Plantilla</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <!-- Creacion de una plantilla que se podra usar en 
+        partes como reutilizable poniendole fragment-->
+        <header th:fragment="header">
+            <h1>Control de Usuarios</h1>
+        </header>
+        
+        <footer th:fragment="footer">
+            <p>Derechos reservados <a href="https://github.com/LuisBautistaa" target="blank">Luis Github</a></p>
+        </footer>
+    </body>
+</html>
