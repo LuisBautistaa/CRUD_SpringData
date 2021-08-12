@@ -3,11 +3,15 @@ package com.LuisBautista.web;
 import com.LuisBautista.dao.IPersonaDao;
 import com.LuisBautista.domain.Persona;
 import com.LuisBautista.service.PersonaService;
+import java.util.HashMap;
+import java.util.List;
+import javax.validation.Valid;
 import org.springframework.web.bind.annotation.GetMapping;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PostMapping;
 /**
  *
@@ -34,6 +38,12 @@ public class ControladorInicio {
         return "index";
     }
     
+    @GetMapping("/jsonData")
+    public String jsonUsers(Persona persona){
+        String msj ="Hola aca se visualizara la data en formato json";
+        return "jsonView";
+    }
+    
     @GetMapping("/agregar")
     public String agregar(Persona persona){
         //retorna la vista de modificar y en el parametro se inyecta una persona
@@ -42,7 +52,10 @@ public class ControladorInicio {
     
     //metodo de tipo post que recuperara la info del form de insert 
     @PostMapping("/guardar")
-    public String guardar(Persona persona){
+    public String guardar(@Valid Persona persona, Errors errores){
+        if(errores.hasErrors()){
+            return "modificar";
+        }
         personaService.guardar(persona);
         return "redirect:/";
     }

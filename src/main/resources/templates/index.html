@@ -12,6 +12,8 @@
         <!-- Se agrega los atributos que se pasaron en el domain Persona -->
         <!<!-- Se agrega link para redirigir a la pantalla agregar -->
         <a th:href="@{/agregar}">Crear persona</a>
+        <br>
+        <a th:href="@{/jsonData}">Ver json</a>
         <!-- se agrega condicion para que solo se muestre la tabla si no esta vacias -->
         <div th:if ="${personas != null and !personas.empty}">
             <table border="1">
